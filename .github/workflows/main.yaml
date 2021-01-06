@@ -1,0 +1,51 @@
+name: GitHub Actions Build and Test
+
+on: [ push, pull_request ]
+
+jobs:
+  build_and_test:
+    name: Build and Test
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+
+    - name: Read sample markdown 1 (starting with "---")
+      id: sample1
+      shell: bash
+      run: |
+        content="---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\n---\r\n"
+
+        echo "::set-output name=content::$content"
+
+    - name: Run the private action 1
+      id: action1
+      uses: ./
+      with:
+        markdown: '${{ toJSON(steps.sample1.outputs.content) }}'
+
+    - name: Get JSON 1
+      shell: bash
+      run: |
+        echo '${{ steps.action1.outputs.jsonised }}' | jq "."
+
+    - name: Read sample markdown 2 (starting with NO "---")
+      id: sample2
+      shell: bash
+      run: |
+        content="title: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\n---\r\n"
+
+        echo "::set-output name=content::$content"
+
+    - name: Run the private action 2
+      id: action2
+      uses: ./
+      with:
+        markdown: '${{ toJSON(steps.sample2.outputs.content) }}'
+
+    - name: Get JSON 2
+      shell: bash
+      run: |
+        echo '${{ steps.action2.outputs.jsonised }}' | jq "."

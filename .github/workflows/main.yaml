@@ -26,7 +26,7 @@ jobs:
       id: sample1
       shell: bash
       run: |
-        content=${{ steps.payload.outputs.body }}
+        content='${{ steps.payload.outputs.body }}'
 
         echo "::set-output name=content::$content"
 

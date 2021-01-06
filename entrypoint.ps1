@@ -10,7 +10,7 @@ Install-Module -Name powershell-yaml -Scope AllUsers -AllowClobber -Force
 $Markdown
 
 # Extract frontmatter
-$md = $Markdown.Replace("\r", "`r").Replace("\n", "`n") -split ("---")
+$md = $Markdown.Replace("\\r", "`r").Replace("\r", "`r").Replace("\\n", "`n").Replace("\n", "`n") -split ("---")
 
 $md
 

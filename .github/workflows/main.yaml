@@ -13,8 +13,8 @@ jobs:
       id: payload
       shell: bash
       run: |
-        $title= ${{ github.event.pull_request.title }}
-        $body= ${{ toJSON(github.event.pull_request.body) }}
+        title='${{ github.event.pull_request.title }}'
+        body='${{ toJSON(github.event.pull_request.body) }}'
 
         echo "::set-output name=title::$title"
         echo "::set-output name=body::$body"

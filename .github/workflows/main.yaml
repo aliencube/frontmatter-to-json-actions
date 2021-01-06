@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check event payload
-      id: payload
-      shell: bash
-      run: |
-        title='${{ github.event.pull_request.title }}'
-        body='${{ toJSON(github.event.pull_request.body) }}'
+    # - name: Check event payload
+    #   id: payload
+    #   shell: bash
+    #   run: |
+    #     title='${{ github.event.pull_request.title }}'
+    #     body=${{ toJSON("---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31\r\n---\r\n") }}
 
-        echo "::set-output name=title::$title"
-        echo "::set-output name=body::$body"
+    #     echo "::set-output name=title::$title"
+    #     echo "::set-output name=body::$body"
 
     - name: Checkout the repo
       uses: actions/checkout@v2
@@ -26,9 +26,9 @@ jobs:
       id: sample1
       shell: bash
       run: |
-        content='${{ steps.payload.outputs.body }}'
+        content=$(cat ./samples/sample1.md)
 
-        echo "::set-output name=content::$content"
+        echo "::set-output name=content::${{ toJSON($content) }}"
 
     - name: Run the private action 1
       id: action1

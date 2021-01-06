@@ -1,0 +1,23 @@
+name: Frontmatter to JSON Converter
+author: Aliencube Community
+description: Convert frontmatter in a markdown document to a JSON string for further processing
+
+branding:
+  icon: arrow-right
+  color: red
+
+inputs:
+  markdown:
+    description: Markdown document
+    required: true
+
+outputs:
+  jsonised:
+    description: JSON converted from frontmatter
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+  - -Markdown
+  - ${{ inputs.markdown }}

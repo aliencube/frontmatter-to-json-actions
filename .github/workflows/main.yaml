@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check event payload
+      shell: bash
+      run: |
+        echo '${{ toJSON(github.event) }}'
+
     - name: Checkout the repo
       uses: actions/checkout@v2
 

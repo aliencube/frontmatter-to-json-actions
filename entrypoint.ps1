@@ -20,9 +20,9 @@ if ($md[0] -eq "") {
 $deserialised = $yaml | ConvertFrom-Yaml
 $jsonised = $deserialised | ConvertTo-Json -Compress
 
-$jsonised
+# $jsonised
 
-Write-Output "::set-output name=jsonised::$jsonised"
+Write-Output "::set-output name=jsonised::'$jsonised'"
 
 Remove-Variable jsonised
 Remove-Variable deserialised

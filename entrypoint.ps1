@@ -5,8 +5,7 @@ Param(
 )
 
 # Install PowerShell-Yaml module
-Install-Module -Name powershell-yaml -Scope AllUsers -AllowClobber -Force -Verbose
-Get-InstalledModule -Name powershell-yaml -AllVersions
+Install-Module -Name powershell-yaml -Scope AllUsers -AllowClobber -Force
 
 # Extract frontmatter
 $md = $Markdown.Replace("\r", "`r").Replace("\n", "`n") -split ("---")

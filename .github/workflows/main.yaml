@@ -16,7 +16,7 @@ jobs:
       id: sample1
       shell: bash
       run: |
-        content=$(awk '{printf "%s\\\\r\\\\n", $0} END {print ""}' ./samples/sample1.md)
+        content=$(awk '{printf "%s\\r\\n", $0} END {print ""}' ./samples/sample1.md)
 
         echo "::set-output name=content::$content"
 
@@ -35,7 +35,7 @@ jobs:
       id: sample2
       shell: bash
       run: |
-        content=$(awk '{printf "%s\\\\r\\\\n", $0} END {print ""}' ./samples/sample2.md)
+        content=$(awk '{printf "%s\\r\\n", $0} END {print ""}' ./samples/sample2.md)
 
         echo "::set-output name=content::$content"
 

@@ -24,7 +24,7 @@ jobs:
       id: action1
       uses: ./
       with:
-        markdown: ${{ steps.sample1.outputs.content }}
+        markdown: '${{ steps.sample1.outputs.content }}'
 
     - name: Get JSON 1
       shell: bash
@@ -43,7 +43,7 @@ jobs:
       id: action2
       uses: ./
       with:
-        markdown: ${{ steps.sample2.outputs.content }}
+        markdown: '${{ steps.sample2.outputs.content }}'
 
     - name: Get JSON 2
       shell: bash

@@ -10,9 +10,14 @@ jobs:
 
     steps:
     - name: Check event payload
+      id: payload
       shell: bash
       run: |
-        echo '${{ toJSON(github.event) }}'
+        title=${{ github.event.pull_request.title }}
+        body=${{ github.event.pull_request.body }}
+
+        echo "::set-output name=title::$title"
+        echo "::set-output name=body::$body"
 
     - name: Checkout the repo
       uses: actions/checkout@v2
@@ -21,7 +26,7 @@ jobs:
       id: sample1
       shell: bash
       run: |
-        content=$(awk '{printf "%s\\r\\n", $0} END {print ""}' ./samples/sample1.md)
+        content=${{ steps.payload.outputs.body }}
 
         echo "::set-output name=content::$content"
 

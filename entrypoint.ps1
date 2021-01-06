@@ -1,5 +1,5 @@
 Param(
-    [Array]
+    [string]
     [Parameter(Mandatory=$true)]
     $Markdown
 )

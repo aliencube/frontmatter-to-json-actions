@@ -16,7 +16,7 @@ jobs:
       id: sample1
       shell: bash
       run: |
-        content="---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\n---\r\n"
+        content="---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\n---\r\n\r\n# Heading 1 #\r\n\r\nParagraph 1"
 
         echo "::set-output name=content::$content"
 
@@ -26,7 +26,7 @@ jobs:
       with:
         markdown: '${{ toJSON(steps.sample1.outputs.content) }}'
 
-    - name: Get JSON 1
+    - name: Parse JSON 1
       shell: bash
       run: |
         echo '${{ steps.action1.outputs.jsonised }}' | jq "."
@@ -35,7 +35,7 @@ jobs:
       id: sample2
       shell: bash
       run: |
-        content="title: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\n---\r\n"
+        content="title: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\n---\r\n\r\n# Heading 1 #\r\n\r\nParagraph 1"
 
         echo "::set-output name=content::$content"
 
@@ -45,7 +45,7 @@ jobs:
       with:
         markdown: '${{ toJSON(steps.sample2.outputs.content) }}'
 
-    - name: Get JSON 2
+    - name: Parse JSON 2
       shell: bash
       run: |
         echo '${{ steps.action2.outputs.jsonised }}' | jq "."

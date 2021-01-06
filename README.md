@@ -19,23 +19,23 @@ This is a GitHub Actions that converts the frontmatter YAML in a markdown docume
 
 ```yaml
 steps:
-  - name: Read markdown document
+  - name: Read markdown document containing frontmatter
     id: markdown
     shell: bash
     run: |
-      content=$(cat my-markdown-document.md)
+      content="---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\n---\r\n\r\n# Heading 1 #\r\n\r\nParagraph 1"
       echo "::set-output name=content::$content"
 
   - name: Extract frontmatter from markdown as JSON
     id: frontmatter
     uses: aliencube/frontmatter-to-json-actions@v1
     with:
-      markdown: ${{ steps.markdown.outputs.content }}
+      markdown: '${{ toJSON(steps.markdown.outputs.content) }}'
 
-  - name: Get JSON
+  - name: Parse JSON
     shell: bash
     run: |
-      echo ${{ steps.frontmatter.output.jsonised }} | jq "."
+      echo '${{ steps.frontmatter.outputs.jsonised }}' | jq "."
 ```
 
 

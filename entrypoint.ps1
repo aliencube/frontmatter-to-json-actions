@@ -10,17 +10,16 @@ Install-Module -Name powershell-yaml -Scope AllUsers -AllowClobber -Force
 $Markdown
 
 # Extract frontmatter
-$md = $Markdown.Replace("\\r", "`r").Replace("\r", "`r").Replace("\\n", "`n").Replace("\n", "`n") -split ("---")
-
-$md
+$md = $Markdown.Replace("\\r", "`r").Replace("\r", "`r").Replace("\\n", "`n").Replace("\n", "`n").Trim() -split ("---")
 
 if ($md[0] -eq "") {
-    $yaml = $md[1]
+    $yaml = $md[1].Trim()
 } else {
-    $yaml = $md[0]
+    $yaml = $md[0].Trim()
 }
 
-Write-Output $yaml
+Write-Output "YAML:"
+$yaml
 
 # Convert frontmatter YAML to JSON
 $deserialised = $yaml | ConvertFrom-Yaml

@@ -1,5 +1,5 @@
 Param(
-    [string]
+    [Array]
     [Parameter(Mandatory=$true)]
     $Markdown
 )
@@ -7,18 +7,18 @@ Param(
 # Install PowerShell-Yaml module
 Install-Module -Name powershell-yaml -Scope AllUsers -AllowClobber -Force
 
-Write-Output $Markdown
+$Markdown
 
-# Extract frontmatter
-$md = $Markdown.Replace("\r", "`r").Replace("\n", "`n") -split ("---")
+# # Extract frontmatter
+# $md = $Markdown.Replace("\r", "`r").Replace("\n", "`n") -split ("---")
 
-$md
+# $md
 
-if ($md[0] -eq "") {
-    $yaml = $md[1]
-} else {
-    $yaml = $md[0]
-}
+# if ($md[0] -eq "") {
+#     $yaml = $md[1]
+# } else {
+#     $yaml = $md[0]
+# }
 
 Write-Output $yaml
 

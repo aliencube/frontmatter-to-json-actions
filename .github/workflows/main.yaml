@@ -16,7 +16,7 @@ jobs:
       id: sample1
       shell: bash
       run: |
-        content="---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31\r\n---\r\n"
+        content="---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56+09:00\r\n---\r\n"
 
         echo "::set-output name=content::$content"
 
@@ -35,7 +35,7 @@ jobs:
       id: sample2
       shell: bash
       run: |
-        content="title: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31\r\n---\r\n"
+        content="title: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56+09:00\r\n---\r\n"
 
         echo "::set-output name=content::$content"
 

@@ -17,7 +17,7 @@ jobs:
       shell: bash
       run: |
         content=$(cat ./samples/sample1.md)
-        echo $content
+
         echo "::set-output name=content::$content"
 
     - name: Run the private action 1
@@ -29,14 +29,14 @@ jobs:
     - name: Get JSON 1
       shell: bash
       run: |
-        echo ${{ steps.action1.outputs.jsonised }} | jq "."
+        echo '${{ steps.action1.outputs.jsonised }}' | jq "."
 
     - name: Read sample markdown 2 (starting with NO "---")
       id: sample2
       shell: bash
       run: |
         content=$(cat ./samples/sample2.md)
-        echo $content
+
         echo "::set-output name=content::$content"
 
     - name: Run the private action 2
@@ -48,4 +48,4 @@ jobs:
     - name: Get JSON 2
       shell: bash
       run: |
-        echo ${{ steps.action2.outputs.jsonised }} | jq "."
+        echo '${{ steps.action2.outputs.jsonised }}' | jq "."

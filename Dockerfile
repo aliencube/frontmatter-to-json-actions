@@ -9,12 +9,7 @@ LABEL "repository"="https://github.com/aliencube/frontmatter-to-json-actions"
 LABEL "homepage"="http://github.com/aliencube"
 LABEL "maintainer"="Justin Yoo <no-reply@aliencube.com>"
 
-# Install PowerShell-Yaml module
-RUN pwsh Install-Module -Name powershell-yaml -Scope AllUsers -AllowClobber -Force -Verbose
-RUN pwsh Get-InstalledModule -Name powershell-yaml -AllVersions
-
 ADD entrypoint.ps1 /entrypoint.ps1
 RUN chmod +x /entrypoint.ps1
 
-# ENTRYPOINT ["/entrypoint.sh"]
 ENTRYPOINT ["pwsh", "-File", "/entrypoint.ps1"]

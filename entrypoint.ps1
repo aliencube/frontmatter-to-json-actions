@@ -4,6 +4,11 @@ Param(
     $Markdown
 )
 
+# Install PowerShell-Yaml module
+Install-Module -Name powershell-yaml -Scope AllUsers -AllowClobber -Force -Verbose
+Get-InstalledModule -Name powershell-yaml -AllVersions
+
+# Extract frontmatter
 $md = $Markdown.Replace("\r", "`r").Replace("\n", "`n") -split ("---")
 
 if ($md[0] -eq "") {
@@ -12,6 +17,7 @@ if ($md[0] -eq "") {
     $yaml = $md[0]
 }
 
+# Convert frontmatter YAML to JSON
 $deserialised = $yaml | ConvertFrom-Yaml
 $jsonised = $deserialised | ConvertTo-Json -Compress
 

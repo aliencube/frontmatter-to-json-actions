@@ -16,7 +16,7 @@ jobs:
       id: sample1
       shell: bash
       run: |
-        content="---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\ndesc: it's OK\r\n---\r\n\r\n# Heading 1 #\r\n\r\nParagraph 1"
+        content="---\r\ntitle: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\ndesc: it's OK\r\nhashtags: #abc #def\r\n---\r\n\r\n# Heading 1 #\r\n\r\nParagraph 1"
 
         echo "::set-output name=content::$content"
 
@@ -29,13 +29,13 @@ jobs:
     - name: Parse JSON 1
       shell: bash
       run: |
-        echo '${{ steps.action1.outputs.jsonised }}' | jq "."
+        echo '${{ toJSON(steps.action1.outputs.jsonised) }}' | jq "."
 
     - name: Read sample markdown 2 (starting with NO "---")
       id: sample2
       shell: bash
       run: |
-        content="title: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\ndesc: it's OK\r\n---\r\n\r\n# Heading 1 #\r\n\r\nParagraph 1"
+        content="title: lorem ipsum\r\ndescription: hello world\r\nnumber: 2\r\ndate: 2038-12-31T12:34:56\r\ndesc: it's OK\r\nhashtags: #abc #def\r\n---\r\n\r\n# Heading 1 #\r\n\r\nParagraph 1"
 
         echo "::set-output name=content::$content"
 

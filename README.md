@@ -35,8 +35,14 @@ steps:
   - name: Parse JSON
     shell: bash
     run: |
-      echo '${{ steps.frontmatter.outputs.jsonised }}' | jq "."
+      echo ${{ toJSON(steps.frontmatter.outputs.jsonised) }} | jq "."
 ```
+
+
+## Known Issues ##
+
+* Single quote (`'`) is escaped to `\'`.
+* Hash tag (`#`) is escaped to `\#`.
 
 
 ## Contribution ##

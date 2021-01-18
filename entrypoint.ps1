@@ -17,7 +17,7 @@ if ($md[0] -eq "") {
 }
 
 # Convert frontmatter YAML to JSON
-$deserialised = $yaml | ConvertFrom-Yaml
+$deserialised = $yaml | ConvertFrom-Yaml -Ordered
 $jsonised = $deserialised | ConvertTo-Json -Compress
 
 $jsonised

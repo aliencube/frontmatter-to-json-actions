@@ -29,7 +29,7 @@ jobs:
     - name: Parse JSON 1
       shell: bash
       run: |
-        echo '${{ toJSON(steps.action1.outputs.jsonised) }}' | jq "."
+        echo ${{ toJSON(steps.action1.outputs.jsonised) }} | jq "."
 
     - name: Read sample markdown 2 (starting with NO "---")
       id: sample2
